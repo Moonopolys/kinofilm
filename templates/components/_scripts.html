@@ -1,0 +1,51 @@
+{% load static %}
+<!-- MDB -->
+<script>
+  // Message close funksiyasi
+  function closeMessage(el) {
+    el.parentElement.classList.add("fade-out");
+    el.parentElement.style.transition = "opacity 1s ease, transform 1s ease";
+    setTimeout(() => el.parentElement.remove(), 1000);
+  }
+
+  // Automatic fade-out va float animatsiyasi
+  document.addEventListener("DOMContentLoaded", () => {
+    const messages = document.querySelectorAll(".message");
+
+    messages.forEach((msg) => {
+      // Boshlanishda kichik shake efekti
+      msg.classList.add("shake");
+
+      // Hover qilganda fade-outni to‘xtatish
+      msg.addEventListener("mouseenter", () => {
+        msg.classList.remove("fade-out");
+      });
+      msg.addEventListener("mouseleave", () => {
+        setTimeout(() => {
+          msg.classList.add("fade-out");
+        }, 2000);
+      });
+
+      // 5 soniyadan keyin avtomatik fade
+      setTimeout(() => {
+        msg.classList.add("fade-out");
+        // 1 soniya keyin DOM’dan olib tashlash
+        setTimeout(() => msg.remove(), 1000);
+      }, 3000);
+    });
+  });
+</script>
+
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.umd.min.js"
+></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.2.0/mdb.umd.min.js"
+></script>
+

@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block main %}
+<main>
+  <div class="d-flex justify-content-center mt-5 mb-5">
+    <div class="card" style="width: 50rem">
+      <img
+        src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW92aWUlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww"
+        class="card-img-top"
+        alt="No Image Found"
+      />
+      <div class="card-body">
+        <h5 class="card-title text-center">JustHD</h5>
+        <p class="card-text">
+          2020-yil Madaminov Nodirbek tomonidan ochilgan, sifatli va reklamalarsiz
+          filmlarni original holatda tomoshabinlarga yetkazib berish maqsadida, eng yaxshi
+          kontentlarni joylab kanal o'z faoliyatini hali hamon yuritmoqda!!!
+        </p>
+      </div>
+      <ul class="list-group list-group-light list-group-small">
+        <li class="list-group-item px-4"><b>Asoschi:</b> Nodirbek Madaminov</li>
+        <li class="list-group-item px-4"><b>Tashkil topilgan:</b> 10.10.2020</li>
+      </ul>
+      <div class="card-body">
+        <a href="{% url 'main' %}" class="card-link text-center">Kino Filmlar</a>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock main %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container mt-5" style="max-width: 600px;">
+  <div class="card shadow-lg border-0 rounded-3">
+    <div class="card-body text-center p-4">
+      <h4 class="mb-3 text-danger">❗ O‘chirish tasdig‘i</h4>
+      <p class="mb-4">
+        <strong>"{{ movie.title }}"</strong> filmini o‘chirib tashlamoqchimisiz?
+      </p>
+
+      <form method="post" class="d-flex justify-content-center gap-2">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger px-4">
+          Ha, o‘chirilsin
+        </button>
+        <a href="{% url 'main' %}" class="btn btn-secondary px-4">
+          Bekor qilish
+        </a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock main %}

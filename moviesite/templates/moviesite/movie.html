@@ -1,0 +1,68 @@
+{% extends 'base.html' %} 
+{% block main %}
+<main>
+  <div class="d-flex justify-content-center mt-5 mb-5">
+    <div
+      class="card text-center shadow-lg"
+      style="max-width: 800px; width: 100%"
+    >
+      {% if movie.cover %}
+      <img
+        src="{{ movie.cover.url }}"
+        class="mx-auto d-block mt-3"
+        style="width: 400px; height: auto; object-fit: cover"
+        alt="{{ movie.title }}"
+      />
+      {% else %}
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/624px-No-Image-Placeholder.svg.png"
+        class="mx-auto d-block mt-3"
+        style="width: 400px; height: auto; object-fit: cover"
+        alt="No Image Found"
+      />
+      {% endif %}
+
+      <div class="card-body" style="max-width: 600px; margin: 0 auto">
+        <h4 class="card-title">{{ movie.title }}</h4>
+        <p
+          class="card-text text-muted"
+          style="font-size: 16px; line-height: 1.6"
+        >
+          <b>Director: {{ movie.director }}</b><br />
+          {{ movie.description }}
+        </p>
+      </div>
+
+      <div class="video mb-3">
+        {% if movie.video %}
+        <video class="rounded-3" controls style="width: 100%; max-width: 700px">
+          <source src="{{ movie.video.url }}" />
+        </video>
+        {% else %}
+        <img
+          src="https://www.partitionwizard.com/images/uploads/2020/05/no-video-with-supported-format-and-mime-type-found-thumbnail.jpg"
+          class="rounded-3"
+          style="width: 100%; max-width: 700px"
+          alt="No Video Found"
+        />
+        {% endif %}
+      </div>
+
+      <div class="card-footer">
+        <small class="text-muted">{{ movie.release }}</small>
+      </div>
+      {% if user.is_staff %}
+      <a href="{% url 'delete_movie' movie.id %}" class="btn btn-sm btn-danger">
+        <i class="fas fa-trash"></i>
+      </a>
+      <a
+        href="{% url 'update_movie' movie.id %}"
+        class="btn btn-sm btn-primary"
+      >
+        <i class="fas fa-edit"></i>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</main>
+{% endblock main %}
