@@ -36,7 +36,7 @@
         {% for movie in movies %}
         <div class="col">
           <div class="card h-100">
-            <a href="{% url 'by_movie' movie.id %}">
+            <a href="{% url 'movie_detail' movie.id %}">
               {% if movie.cover %}
               <img
                 src="{{ movie.cover.url }}"
