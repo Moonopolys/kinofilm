@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required, login_required
 from django.urls import reverse, reverse_lazy
+from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView, CreateView
 from django.views import View
 
@@ -16,6 +17,8 @@ class HomeView(ListView):
     template_name = "moviesite/main.html"
     context_object_name = "movies"
     extra_context = {"title": "Asosiy sahifa"}
+    paginate_by = 2
+
 
     def get_queryset(self):
         return Movie.objects.filter(published=True)
@@ -55,6 +58,7 @@ class MovieDetailView(DetailView):
     template_name = "moviesite/movie.html"
     context_object_name = "movie"
     pk_url_kwarg = "movie_id"
+    # paginate_by = 2
 
     def get_queryset(self):
         return Movie.objects.filter(published=True)
@@ -125,3 +129,16 @@ def profile(request: HttpRequest, username: str):
     except Profile.DoesNotExist:
         pass
     return render(request, "profile.html", context)
+
+
+def pagin(request):
+    movie = Movie.objects.all()
+
+    p = Paginator(movie, 2)
+
+    page_num = request.GET.get("page", 1)
+
+    context = {
+        "page_movie": p.page(page_num)
+    }
+    return render(request, "moviesite/main.html", context)
